@@ -41,3 +41,23 @@ GROUP BY
     Player.Username
 ORDER BY 
     total_playtime DESC;
+
+
+-- Query 8 
+-- Purpose: Find all developers with director roles
+-- Uses LIKE to search for specific roles
+SELECT DISTINCT
+    Developer.developer_name,
+    Project_Role.Role
+FROM 
+    Developer
+JOIN 
+    Developer_Project ON Developer.developer_id = Developer_Project.Developer_ID
+JOIN 
+    Project_Role ON Developer_Project.Project = Project_Role.Project
+WHERE 
+    Project_Role.Role LIKE '%Director%'
+ORDER BY 
+    Developer.developer_name;
+
+
