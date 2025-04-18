@@ -44,8 +44,7 @@ ORDER BY
 
 
 -- Query 8 
--- Purpose: Find all developers with director roles
--- Uses LIKE to search for specific roles
+-- Find all developers with director roles
 SELECT DISTINCT
     Developer.developer_name,
     Project_Role.Role
