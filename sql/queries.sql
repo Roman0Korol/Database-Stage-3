@@ -44,7 +44,7 @@ ORDER BY
 
 
 -- Query 8 
--- Find all developers with director roles
+-- Find all developers that have Director in their role 
 SELECT DISTINCT
     Developer.developer_name,
     Project_Role.Role
