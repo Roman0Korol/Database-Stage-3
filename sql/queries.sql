@@ -59,4 +59,41 @@ WHERE
 ORDER BY 
     Developer.developer_name;
 
+-- Query 9
+-- Gets the best performing developers based on their game rating which is calculated based on average completion and playtime
+
+WITH GameRatings AS (
+    SELECT 
+        Game.game_id,
+        game_name,
+        ROUND(AVG(completion_percentage),2) AS avg_completion,
+        ROUND(AVG(playtime_hours),2) AS avg_playtime,
+    	ROUND(AVG((playtime_hours+completion_percentage)/2),2) AS game_rating
+    FROM 
+        Profile
+    JOIN 
+        Game ON Profile.game_id = Game.game_id
+    GROUP BY 
+        Game.game_id, game_name
+)
+
+SELECT 
+    Developer.developer_name,
+    Studio.studio_name,
+    GameRatings.game_name,
+    GameRatings.avg_completion,
+    GameRatings.avg_playtime,
+        GameRatings.game_rating
+FROM 
+    Developer
+JOIN 
+    Developer_Studio ON Developer.developer_id = Developer_Studio.Developer_ID
+JOIN 
+    Studio ON Developer_Studio.studio_id = Studio.studio_id
+JOIN 
+    Game ON Studio.studio_id = Game.studio_id
+JOIN 
+    GameRatings ON Game.game_id = GameRatings.game_id
+ORDER BY 
+    GameRatings.game_rating DESC
 
