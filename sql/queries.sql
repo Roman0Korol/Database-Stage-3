@@ -22,7 +22,7 @@ HAVING total_playtime > (
   SELECT AVG(playtime_hours) FROM profile
 );
 
--- Query 6
+-- Query 7
 -- Classify players based on their total playtime hours
 SELECT 
     Player.Username,
