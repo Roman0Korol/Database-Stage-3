@@ -19,6 +19,16 @@ FROM gaming_system
 GROUP BY manufacturer
 ORDER BY total_consoles DESC;
 
+--Query 3
+-- Retrieve the latest game for each genre
+SELECT game_name, release_date, genre
+FROM game g
+WHERE release_date = (
+    SELECT MAX(release_date)
+    FROM game
+    WHERE genre = g.genre
+)
+ORDER BY genre;
 
 
 -- Query 6 
