@@ -11,6 +11,15 @@ JOIN
 WHERE 
     profile.playtime_hours < 50;
 
+-- Query 2
+-- This query retrieves the total number of consoles for each manufacturer 
+-- and sorts the results in descending order based on the total number of consoles.
+SELECT manufacturer, COUNT(name) AS total_consoles
+FROM gaming_system
+GROUP BY manufacturer
+ORDER BY total_consoles DESC;
+
+
 
 -- Query 6 
 -- Show players whose playtime is greater than the average playtime
