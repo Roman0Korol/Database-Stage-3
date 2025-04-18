@@ -1,15 +1,12 @@
 -- Query  1 
--- Select the player ID, username, and playtime hours
+-- Get players with less than 50 hours of playtime
 SELECT  
-    player.ID,                 -- Player's unique ID from the 'player' table
-    player.Username,           -- Player's username from the 'player' table
-    profile.playtime_hours     -- Corresponding playtime hours from the 'profile' table
+    player.ID,            
+    player.Username,      
+    profile.playtime_hours 
 FROM 
     player
--- Join the 'profile' table where the player ID matches in both tables
 JOIN 
-    profile 
-    ON player.ID = profile.player_id
--- Filter the results to show only players with less than 50 hours of playtime
+    profile ON player.ID = profile.player_id
 WHERE 
-    profile.playtime_hours < '50';
+    profile.playtime_hours < 50;
