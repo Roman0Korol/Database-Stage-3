@@ -30,6 +30,29 @@ WHERE release_date = (
 )
 ORDER BY genre;
 
+--Query 4 
+-- This query retrieves the top 5 players with the highest average game completion percentage,
+-- including their ID and username, by joining the player and profile tables.
+SELECT 
+    player.ID,
+    player.Username,
+    ROUND(AVG(profile.completion_percentage), 2) AS avg_completion
+FROM player
+JOIN profile ON player.ID = profile.player_id
+GROUP BY player.ID, player.Username
+ORDER BY avg_completion DESC
+LIMIT 5;
+
+-- Query 5 
+-- Rank Sony consoles released between 2015 and 2023 by latest release
+SELECT 
+    name,
+    manufacturer,
+    release_year,
+    RANK() OVER (ORDER BY release_year DESC) AS release_rank
+FROM gaming_system
+WHERE manufacturer = 'Sony'
+  AND release_year BETWEEN 2015 AND 2023;
 
 -- Query 6 
 -- Show players whose playtime is greater than the average playtime
