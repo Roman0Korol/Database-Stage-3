@@ -139,3 +139,33 @@ JOIN
 ORDER BY 
     GameRatings.game_rating DESC
 
+--Query 10
+-- Purpose: Create a basic view of studio game statistics, 
+CREATE VIEW Studio_Game_Stats AS
+SELECT 
+    Studio.studio_id,
+    Studio.studio_name,
+    COUNT(Game.game_id) AS number_of_games,
+    MIN(Game.release_date) AS first_release,
+    MAX(Game.release_date) AS latest_release
+FROM 
+    Studio
+LEFT JOIN 
+    Game ON Studio.studio_id = Game.studio_id
+GROUP BY 
+    Studio.studio_id, Studio.studio_name;
+
+SELECT 
+    studio_name,
+    number_of_games,
+    first_release,
+    latest_release,
+
+    YEAR(CURRENT_DATE()) - YEAR(first_release) AS years_active
+FROM 
+    Studio_Game_Stats
+WHERE 
+    number_of_games >= 2  
+    AND latest_release >= '2022-01-01' 
+ORDER BY 
+    number_of_games DESC;
