@@ -166,22 +166,7 @@ public class Main {
             throw e;
         }
     }
-//    private void executeQuery5() throws SQLException {
-//        debugSonyConsoles();
-//        String query = "SELECT name, manufacturer, release_year, " +
-//                "RANK() OVER (ORDER BY release_year DESC) AS release_rank " +
-//                "FROM gaming_system " +
-//                "WHERE manufacturer = 'Sony' " +
-//                "AND release_year BETWEEN 2015 AND 2023";
-//
-//        System.out.println("\nExecuting Query 5: Ranked Sony Consoles (2015-2023)\n" + query);
-//        try (ResultSet rs = DBCommand.executeQuery(conn, query)) {
-//            DBOutputFormatter.showGenericQueryResult("RANKED SONY CONSOLES", rs);
-//        } catch (SQLException e) {
-//            System.err.println("Failed to execute Query 5");
-//            throw e;
-//        }
-//    }
+
 
     private void executeQuery6() throws SQLException {
         double avgPlaytime = 0;
@@ -278,37 +263,7 @@ public class Main {
         }
     }
 
-//    private void executeQuery10() throws SQLException {
-//        try {
-//            DBCommand.executeUpdate(conn, "DROP VIEW IF EXISTS Studio_Game_Stats");
-//
-//            String createView = "CREATE VIEW Studio_Game_Stats AS " +
-//                    "SELECT s.studio_id, s.studio_name, " +
-//                    "COUNT(g.game_id) AS number_of_games, " +
-//                    "MIN(g.release_date) AS first_release, " +
-//                    "MAX(g.release_date) AS latest_release " +
-//                    "FROM studio s LEFT JOIN game g ON s.studio_id = g.studio_id " +
-//                    "GROUP BY s.studio_id, s.studio_name";
-//
-//            DBCommand.executeUpdate(conn, createView);
-//
-//            String query = "SELECT studio_name, number_of_games, " +
-//                    "strftime('%Y-%m-%d', first_release) as first_release, " +
-//                    "strftime('%Y-%m-%d', latest_release) as latest_release, " +
-//                    "(strftime('%Y', 'now') - strftime('%Y', first_release)) AS years_active " +
-//                    "FROM Studio_Game_Stats " +
-//                    "WHERE number_of_games >= 2 AND latest_release >= date('2022-01-01') " +
-//                    "ORDER BY number_of_games DESC";
-//
-//            System.out.println("\nExecuting Query 10: Active Studio Statistics\n" + query);
-//            try (ResultSet rs = DBCommand.executeQuery(conn, query)) {
-//                DBOutputFormatter.showGenericQueryResult("ACTIVE STUDIO STATISTICS", rs);
-//            }
-//        } catch (SQLException e) {
-//            System.err.println("Failed to execute Query 10");
-//            throw e;
-//        }
-//    }
+
     private void debugSonyConsoles() throws SQLException {
         String query = "SELECT name, manufacturer, release_year " +
                 "FROM gaming_system " +
